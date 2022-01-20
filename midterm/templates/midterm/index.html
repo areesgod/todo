@@ -1,17 +1,31 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+</head>
+<body>
+<h1 class="text-center">To do list</h1>
 <form method="post" action="/">
     {% csrf_token %}
-    {{ form.title }}
-    <input type="submit" name="Create">
+  <div class="d-flex justify-content-center">{{form.title }}
+      <input class="btn btn-primary" type="submit" name="Create">
+  </div>
+
 </form>
 {% for task in tasks %}
-<div>
-    <a href="{% url 'update_task' task.id %}">Update</a>
-    <a href="{% url 'delete' task.id %}">Delete</a>
-    {% if task.complete == TRUE %}
+
+<div class="d-flex flex-column justify-content-center border" >
+<div class="text-center">
+    {% if task.complete == True %}
     <strike>{{ task }}</strike>
     {% else %}
-    <span>{{ task }}</span>
+    <span class="fw-bold">{{ task }}</span>
     {% endif %}
 </div>
+<div class="d-flex justify-content-center">
+    <a class="btn btn-secondary btn-sm" href="{% url 'update_task' task.id %}">Update</a>
+    <a class="btn btn-danger btn-sm" href="{% url 'delete' task.id %}">Delete</a>
+</div>
+
+
 {% endfor %}
+</body>
+</html>
