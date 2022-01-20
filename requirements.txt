@@ -1,1 +1,2 @@
-
+In order to work with this app you need to install django
+-pip install django
